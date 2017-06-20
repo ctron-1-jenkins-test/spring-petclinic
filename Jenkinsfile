@@ -44,7 +44,11 @@ sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
             }
         }
         stage ('ask') {
-            steps {
+                            when {
+                    branch 'production'
+                }
+
+            steps {            
                 sh 'sleep 5'
             }
         }
