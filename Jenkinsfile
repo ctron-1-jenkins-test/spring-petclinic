@@ -12,7 +12,7 @@ pipeline {
                       sh "mvn clean install"
 
                     }
-                stash 'target/*.jar'
+                stash name:"result", includes:"target/*.jar"
             }
         }
         stage ('analyze') {
@@ -27,7 +27,7 @@ pipeline {
         }
         stage ('stage') {
             steps {
-                unstash
+                unstash "result"
                 sh 'ls -l target'
                 sh 'sleep 5'
             }
@@ -39,7 +39,7 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                unstash
+                unstash "result"
                 sh 'ls -l target'
                 sh 'sleep 5'
             }
