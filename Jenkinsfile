@@ -2,7 +2,9 @@ pipeline {
     agent any
     stages {
         stage ('build') {
-            sh 'sleep 5'
+            steps {
+                sh 'sleep 5'
+            }
         }
     }
 }
