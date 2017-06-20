@@ -12,7 +12,7 @@ pipeline {
                       sh "mvn clean install"
 
                     }
-                stash 'target/\*.jar'
+                stash 'target/\\*.jar'
             }
         }
         stage ('analyze') {
