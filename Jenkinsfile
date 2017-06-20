@@ -27,6 +27,8 @@ pipeline {
         }
         stage ('stage') {
             steps {
+                unstash
+                sh 'ls -l target'
                 sh 'sleep 5'
             }
         }
@@ -37,6 +39,8 @@ pipeline {
         }
         stage ('deploy') {
             steps {
+                unstash
+                sh 'ls -l target'
                 sh 'sleep 5'
             }
         }
