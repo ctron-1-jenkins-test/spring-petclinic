@@ -11,7 +11,8 @@ pipeline {
                       // Run the maven build
                       sh "mvn clean install"
 
-                    }           
+                    }
+                stash 'target/\*.jar'
             }
         }
         stage ('analyze') {
