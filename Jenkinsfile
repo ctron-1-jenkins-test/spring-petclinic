@@ -16,8 +16,10 @@ pipeline {
             }
         }
         stage ('analyze') {
-            steps {
-                sh 'sleep 5'
+            steps { 
+                withSonarQubeEnv('sonar') {
+      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+    }
             }
         }
         stage ('acceptance-test') {
