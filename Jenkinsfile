@@ -45,7 +45,7 @@ sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
         }
         stage ('ask') {
                             when {
-                    branch 'production'
+                    branch 'master'
                 }
 
             steps {            
@@ -53,6 +53,9 @@ sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
             }
         }
         stage ('deploy') {
+              when {
+                    branch 'master'
+                }
             steps {
                 unstash "result"
                 sh 'ls -l target'
