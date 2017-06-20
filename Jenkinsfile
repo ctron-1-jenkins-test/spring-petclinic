@@ -18,7 +18,16 @@ pipeline {
         stage ('analyze') {
             steps { 
                 withSonarQubeEnv('sonar') {
-      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+                    
+                    withMaven(
+                        // Maven installation declared in the Jenkins "Global Tool Configuration"
+                        maven: 'M3',
+                    ) {
+sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+
+                    }
+                    
+      
     }
             }
         }
